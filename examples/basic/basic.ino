@@ -6,7 +6,7 @@
 const char *WIFI_SSID = "wifiSSD";
 const char *WIFI_PASS = "wifiPassword";
 
-// --- Nikki Playground Credentials ---
+// --- nikki Playground Credentials ---
 // (replace with values from NikkiBuild Playground dashboard)
 const char *SERVICE_DEF_JSON = R"(
   
@@ -21,11 +21,11 @@ const char *SERVICE_TOKEN_JSON = R"(
  
  )";
 
-// --- Create Nikki client instance ---..
-NikkiClientESP *nikki;
+// --- Create nikki client instance ---..
+nikkiServiceBase *nikki;
 
 void onMessageReceived(const JsonVariant &msg) {
-  Serial.println("[Nikki Playground] Received:");
+  Serial.println("[nikki Playground] Received:");
   // Serial.println(msg);
 }
 
@@ -49,15 +49,15 @@ void setup() {
   }
   Serial.println("\nWiFi Connected!");
 
-  // Setup Nikki client
+  // Setup nikki client
 
 
-  nikki = new NikkiClientESP(SERVICE_DEF_JSON, SERVICE_TOKEN_JSON);
+  nikki = new nikkiServiceBase(SERVICE_DEF_JSON, SERVICE_TOKEN_JSON);
 
   nikki->setOnMessage(onMessageReceived);
   nikki->setOnStatus(onStatusChanged);
 
-  // Start Nikki playground connection
+  // Start nikki playground connection
   nikki->begin();
   delay(1000);
   Serial.println("Connecting to ws server ");
@@ -80,6 +80,6 @@ void loop() {
     doc["unit"] = "C";
     doc["timeStamp"] = millis();
     nikki->send(doc);
-    Serial.println("[Sent to Nikki Playground] ");
+    Serial.println("[Sent to nikki Playground] ");
   }
 }

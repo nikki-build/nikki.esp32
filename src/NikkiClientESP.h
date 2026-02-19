@@ -12,30 +12,36 @@
 #define QUERY_STRING_KEY "token"
 
 // --- Structs ---
-struct NikkiServiceDetails {
+struct NikkiServiceDetails
+{
   String GuID;
   String servID;
   String instID;
   String name;
   String dispName;
+  String servType;
 };
 
-struct NikkiTokenDetails {
+struct NikkiTokenDetails
+{
   String sessionID;
   String secrete;
   String wsAddr;
   float rateLimit;
 };
 
-enum deviceConnectionStatus {
+enum deviceConnectionStatus
+{
   Inactive,
   Active
 };
 
+
 // --- Main Class ---
-class NikkiClientESP {
+class nikkiServiceBase
+{
 public:
-  NikkiClientESP(const char *serviceDefJson, const char *serviceTokenJson);
+  nikkiServiceBase(const char *serviceDefJson, const char *serviceTokenJson);
 
   void begin();
   void loop();
@@ -65,4 +71,4 @@ private:
   void _webSocketEvent(WStype_t type, uint8_t *payload, size_t length);
 };
 
-#endif  // NIKKI_CLIENT_ESP_H
+#endif // NIKKI_CLIENT_ESP_H
