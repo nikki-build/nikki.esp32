@@ -1,7 +1,6 @@
 #include <WiFi.h>
 #include <NikkiClientESP.h>
 
-
 // --- WiFi Credentials ---
 const char *WIFI_SSID = "wifiSSD";
 const char *WIFI_PASS = "wifiPassword";
@@ -24,12 +23,15 @@ const char *SERVICE_TOKEN_JSON = R"(
 // --- Create nikki client instance ---..
 nikkiServiceBase *nikki;
 
-void onMessageReceived(const JsonVariant &msg) {
+void onMessageReceived(const JsonVariant &msg)
+{
   Serial.println("[nikki Playground] Received:");
-  // Serial.println(msg);
+  serializeJsonPretty(msg, Serial);
+  Serial.println();
 }
 
-void onStatusChanged(const String &status, const String &details) {
+void onStatusChanged(const String &status, const String &details)
+{
   Serial.println("");
   Serial.print("[Status] ");
   Serial.print(status);
@@ -37,20 +39,21 @@ void onStatusChanged(const String &status, const String &details) {
   Serial.println(details);
 }
 
-void setup() {
+void setup()
+{
 
   Serial.begin(115200);
   delay(1000);
   Serial.println("Connecting to WiFi...");
   WiFi.begin(WIFI_SSID, WIFI_PASS);
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED)
+  {
     delay(500);
     Serial.print(".");
   }
   Serial.println("\nWiFi Connected!");
 
   // Setup nikki client
-
 
   nikki = new nikkiServiceBase(SERVICE_DEF_JSON, SERVICE_TOKEN_JSON);
 
@@ -65,12 +68,14 @@ void setup() {
 
 static unsigned long lastSent = 0;
 
-void loop() {
+void loop()
+{
 
   nikki->loop();
 
   // Example: Send temperature reading periodically
-  if (millis() - lastSent > 2000 && nikki->isConnected()) {
+  if (millis() - lastSent > 2000 && nikki->isConnected())
+  {
     lastSent = millis();
 
     // Send a JSON object

@@ -265,8 +265,8 @@ void nikkiServiceBase::_webSocketEvent(WStype_t type, uint8_t *payload, size_t l
   case WStype_TEXT:
   {
     String rawMessage = String((char *)payload, length);
-    Serial.println("input msg received:");
-    Serial.println(rawMessage);
+    // Serial.println("input msg received:");
+    // Serial.println(rawMessage);
 
     DynamicJsonDocument inDoc(length + 1024);
     DeserializationError error = deserializeJson(inDoc, payload, length);

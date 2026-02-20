@@ -70,7 +70,8 @@ const char *SERVICE_TOKEN_JSON = R"(
 nikkiServiceBase *nikki;
 void onMessageReceived(const JsonVariant &msg) {
   Serial.println("[nikki Playground] Received:");
-  // Serial.println(msg);
+  serializeJsonPretty(msg, Serial);
+  Serial.println();
 }
 
 void onStatusChanged(const String &status, const String &details) {
