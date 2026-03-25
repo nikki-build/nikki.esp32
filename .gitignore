@@ -1,5 +1,4 @@
-# Ignore everything
-*
+
 
 # But NOT these folders
 !dist/
