@@ -1,0 +1,13 @@
+# Ignore everything
+*
+
+# But NOT these folders
+!dist/
+!dist/**
+
+!examples/
+!examples/**
+
+# Keep the gitignore itself
+!.gitignore
+!README.md
