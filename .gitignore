@@ -7,6 +7,10 @@
 
 !examples/
 !examples/**
+!src/
+!src/**
+
+
 
 # Keep the gitignore itself
 !.gitignore
